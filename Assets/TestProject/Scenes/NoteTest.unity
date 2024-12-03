@@ -1188,14 +1188,15 @@ MonoBehaviour:
   disDetectCircle: {fileID: 881929353}
   video: {fileID: 671172662}
   vp: {fileID: 893076008}
-  turnSpeed: 120
+  turnSpeed: 60
+  outline: {fileID: 1011743915}
   timerUI: {fileID: 482809654}
   musicName: {fileID: 217155314}
   nowSpawnNum: 0
   nowClickNum: 0
   noteList: []
   goodFloat: 0.3
-  perfectFloat: 0.1
+  perfectFloat: 0.2
   badFloat: 0.7
 --- !u!4 &1309833936
 Transform:

@@ -42,6 +42,9 @@ public class LoadNote : MonoBehaviour
     private float turnSpeed;
 
     [SerializeField]
+    private GameObject outline;
+
+    [SerializeField]
     private Text timerUI;
     [SerializeField]
     private Text musicName;
@@ -78,11 +81,12 @@ public class LoadNote : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        disCircle.transform.Rotate(0, 0, turnSpeed * Time.deltaTime);
+        outline.transform.Rotate(0,0,-((turnSpeed/2) * Time.deltaTime));
+        disCircle.transform.Rotate(0, 0, turnSpeed* Time.deltaTime);
         disRotate += turnSpeed * Time.deltaTime;
         Debug.Log("Dis Rotate :" + disRotate);
-        Debug.Log($"Time {musicdata.noteSpawnTime[nowSpawnNum]} + {time}");
-        if (musicdata.noteSpawnTime[nowSpawnNum] <= time && !isEndSpawn)
+        Debug.Log($"Time {musicdata.noteSpawnTime[nowSpawnNum]} + {time + 3.25f}");
+        if (musicdata.noteSpawnTime[nowSpawnNum] <= time + 3.25 && !isEndSpawn)
         {
             noteObj = Instantiate(notePrefab, disDetectCircle.transform.position, disDetectCircle.transform.rotation);
             noteList.Add(noteObj);
