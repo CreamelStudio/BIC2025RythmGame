@@ -82,7 +82,7 @@ public class LoadNote : MonoBehaviour
     {
         time += Time.deltaTime;
         outline.transform.Rotate(0,0,-((turnSpeed/2) * Time.deltaTime));
-        disCircle.transform.Rotate(0, 0, turnSpeed* Time.deltaTime);
+        disCircle.transform.Rotate(0, 0, -turnSpeed* Time.deltaTime);
         disRotate += turnSpeed * Time.deltaTime;
         Debug.Log("Dis Rotate :" + disRotate);
         Debug.Log($"Time {musicdata.noteSpawnTime[nowSpawnNum]} + {time + 3.25f}");
@@ -106,7 +106,7 @@ public class LoadNote : MonoBehaviour
         if (isStart && musicdata.musicName != null)
         {
             
-            mainCircle.transform.Rotate(0, 0, turnSpeed * Time.deltaTime);
+            mainCircle.transform.Rotate(0, 0, -turnSpeed * Time.deltaTime);
             mainRotate += turnSpeed * Time.deltaTime;
             Debug.Log("Main Rotate :" + mainRotate);
             musicName.text = $"{musicdata.musicName}\ntime: {time}";
