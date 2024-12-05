@@ -1,4 +1,15 @@
 {
+    "musicName": "Chronomia",
+    "composerName": "Korone",
+    "editorName": "Creamel",
+
+    "difficult": 1,
+    "turnSpeed": 120.0,
+    "bpm": 120.0,
+
+    "noteSkin": "Default",
+    "mapSkin": "Default",
+
     "noteSpawnTime": [
         7.02445650100708,
         7.342605113983154,
@@ -380,7 +391,6 @@
         147.46043395996095,
         148.5728759765625,
         151.43031311035157
-    ],
-    "musicName": "Chronomia",
-    "turnSpeed": 120.0
+    ]
+    
 }
