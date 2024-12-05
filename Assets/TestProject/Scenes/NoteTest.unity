@@ -1279,6 +1279,9 @@ MonoBehaviour:
   perfectFloat: 0.2
   badFloat: 0.7
   scoreText: {fileID: 56830000}
+  comboCount: 0
+  comboText: {fileID: 8152838350139740545, guid: c3b232dee11a3c54db9663bb32c892b8, type: 3}
+  canvas: {fileID: 438586992}
 --- !u!4 &1309833936
 Transform:
   m_ObjectHideFlags: 0

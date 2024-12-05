@@ -75,8 +75,16 @@ public class LoadNote : MonoBehaviour
     private Text scoreText;
     private int score;
 
+    [SerializeField]
+    public int comboCount;
+    [SerializeField]
+    private GameObject comboText;
+    [SerializeField]
+    private GameObject canvas;
+
     private void Start()
     {
+        comboCount = 0;
         LoadJson("Test");
         musicName.text = $"{musicdata.musicName}";
         StartCoroutine(Co_StartDelay());
@@ -89,8 +97,8 @@ public class LoadNote : MonoBehaviour
         disCircle.transform.Rotate(0, 0, -turnSpeed* Time.deltaTime);
         disRotate += turnSpeed * Time.deltaTime;
         Debug.Log("Dis Rotate :" + disRotate);
-        Debug.Log($"Time {musicdata.noteSpawnTime[nowSpawnNum]} + {time + 3.25f}");
-        if (musicdata.noteSpawnTime[nowSpawnNum] <= time + 3.25 && !isEndSpawn)
+        Debug.Log($"Time {musicdata.noteSpawnTime[nowSpawnNum]} + {time + 3.28f}");
+        if (musicdata.noteSpawnTime[nowSpawnNum] <= time + 3.28 && !isEndSpawn)
         {
             noteObj = Instantiate(notePrefab, disDetectCircle.transform.position, disDetectCircle.transform.rotation);
             noteList.Add(noteObj);
@@ -127,6 +135,10 @@ public class LoadNote : MonoBehaviour
                 Destroy(noteList[nowClickNum], 1);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(0, 1, 0);
                 score += 5;
+                comboCount++;
+                GameObject combo = Instantiate(comboText, canvas.transform);
+                combo.GetComponent<Text>().text = $"Combo!\n{comboCount}";
+                Destroy(combo, 0.7f);
             }
             else if (Vector3.Distance(mainDetectCircle.transform.position, noteList[nowClickNum].transform.position) <= goodFloat)
             {
@@ -134,6 +146,10 @@ public class LoadNote : MonoBehaviour
                 Destroy(noteList[nowClickNum], 1);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(0, 0, 1);
                 score += 3;
+                comboCount++;
+                GameObject combo = Instantiate(comboText, canvas.transform);
+                combo.GetComponent<Text>().text = $"Combo!\n{comboCount}";
+                Destroy(combo, 0.7f);
             }
             else if (Vector3.Distance(mainDetectCircle.transform.position, noteList[nowClickNum].transform.position) <= badFloat)
             {
@@ -141,6 +157,7 @@ public class LoadNote : MonoBehaviour
                 Destroy(noteList[nowClickNum], 1);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
                 score += 1;
+                comboCount = 0;
             }
             else
             {
@@ -148,7 +165,20 @@ public class LoadNote : MonoBehaviour
                 Destroy(noteList[nowClickNum], 1);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(0.3f, 0.3f, 0.3f);
                 score -= 1;
+                comboCount = 0;
             }
+            nowClickNum++;
+            scoreText.text = score.ToString();
+            
+        }
+
+        if (musicdata.noteSpawnTime[nowSpawnNum] + 1 < time)
+        {
+            Debug.Log("miss");
+            Destroy(noteList[nowClickNum], 1);
+            noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(0.3f, 0.3f, 0.3f);
+            score -= 1;
+            comboCount = 0;
             nowClickNum++;
             scoreText.text = score.ToString();
         }
