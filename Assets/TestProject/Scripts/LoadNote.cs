@@ -71,6 +71,10 @@ public class LoadNote : MonoBehaviour
 
     private bool isPlay;
 
+    [SerializeField]
+    private Text scoreText;
+    private int score;
+
     private void Start()
     {
         LoadJson("Test");
@@ -122,26 +126,31 @@ public class LoadNote : MonoBehaviour
                 Debug.Log("perfectFloat");
                 Destroy(noteList[nowClickNum], 1);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(0, 1, 0);
+                score += 5;
             }
             else if (Vector3.Distance(mainDetectCircle.transform.position, noteList[nowClickNum].transform.position) <= goodFloat)
             {
                 Debug.Log("goodFloat");
                 Destroy(noteList[nowClickNum], 1);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(0, 0, 1);
+                score += 3;
             }
             else if (Vector3.Distance(mainDetectCircle.transform.position, noteList[nowClickNum].transform.position) <= badFloat)
             {
                 Debug.Log("badFloat");
                 Destroy(noteList[nowClickNum], 1);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
+                score += 1;
             }
             else
             {
                 Debug.Log("miss");
                 Destroy(noteList[nowClickNum], 1);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(0.3f, 0.3f, 0.3f);
+                score -= 1;
             }
             nowClickNum++;
+            scoreText.text = score.ToString();
         }
     }
 
