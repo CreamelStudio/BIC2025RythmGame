@@ -88,6 +88,10 @@ public class LoadNote : MonoBehaviour
 
     [SerializeField]
     private float Sync;
+    [SerializeField]
+    private AudioSource audios;
+    [SerializeField]
+    private AudioClip ac;
     private void Start()
     {
         comboCount = 0;
@@ -146,6 +150,7 @@ public class LoadNote : MonoBehaviour
                 combo.GetComponent<Text>().text = $"Combo!\n{comboCount}";
                 Destroy(combo, 0.7f);
                 nowClickNum++;
+                audios.PlayOneShot(ac);
                 scoreText.text = score.ToString();
             }
             else if (Vector3.Distance(mainDetectCircle.transform.position, noteList[nowClickNum].transform.position) <= goodFloat)
@@ -159,6 +164,7 @@ public class LoadNote : MonoBehaviour
                 combo.GetComponent<Text>().text = $"Combo!\n{comboCount}";
                 Destroy(combo, 0.7f);
                 nowClickNum++;
+                audios.PlayOneShot(ac);
                 scoreText.text = score.ToString();
             }
             else if (Vector3.Distance(mainDetectCircle.transform.position, noteList[nowClickNum].transform.position) <= badFloat)
@@ -169,6 +175,7 @@ public class LoadNote : MonoBehaviour
                 score += 1;
                 comboCount = 0;
                 nowClickNum++;
+                audios.PlayOneShot(ac);
                 scoreText.text = score.ToString();
             }
             else 
