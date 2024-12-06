@@ -85,8 +85,9 @@ public class LoadNote : MonoBehaviour
     private GameObject canvas;
     [SerializeField]
     private string jsonFileName;
-   
 
+    [SerializeField]
+    private float Sync;
     private void Start()
     {
         comboCount = 0;
@@ -102,8 +103,8 @@ public class LoadNote : MonoBehaviour
         disCircle.transform.Rotate(0, 0, -turnSpeed* Time.deltaTime);
         disRotate += turnSpeed * Time.deltaTime;
         Debug.Log("Dis Rotate :" + disRotate);
-        Debug.Log($"Time {musicdata.noteSpawnTime[nowSpawnNum]} + {time + 3.28f}");
-        if (musicdata.noteSpawnTime[nowSpawnNum] <= time + 3.28 && !isEndSpawn)
+        Debug.Log($"Time {musicdata.noteSpawnTime[nowSpawnNum]} + {time + 3 + (-Sync)}");
+        if (musicdata.noteSpawnTime[nowSpawnNum] <= time + 3 + (-Sync) && !isEndSpawn)
         {
             noteObj = Instantiate(notePrefab, disDetectCircle.transform.position, disDetectCircle.transform.rotation);
             noteList.Add(noteObj);
@@ -137,7 +138,7 @@ public class LoadNote : MonoBehaviour
             if (Vector3.Distance(mainDetectCircle.transform.position, noteList[nowClickNum].transform.position) <= perfectFloat)
             {
                 Debug.Log("perfectFloat");
-                Destroy(noteList[nowClickNum], 1);
+                Destroy(noteList[nowClickNum], 0.1f);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(0, 1, 0);
                 score += 5;
                 comboCount++;
@@ -150,7 +151,7 @@ public class LoadNote : MonoBehaviour
             else if (Vector3.Distance(mainDetectCircle.transform.position, noteList[nowClickNum].transform.position) <= goodFloat)
             {
                 Debug.Log("goodFloat");
-                Destroy(noteList[nowClickNum], 1);
+                Destroy(noteList[nowClickNum], 0.1f);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(0, 0, 1);
                 score += 3;
                 comboCount++;
@@ -163,7 +164,7 @@ public class LoadNote : MonoBehaviour
             else if (Vector3.Distance(mainDetectCircle.transform.position, noteList[nowClickNum].transform.position) <= badFloat)
             {
                 Debug.Log("badFloat");
-                Destroy(noteList[nowClickNum], 1);
+                Destroy(noteList[nowClickNum], 0.1f);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
                 score += 1;
                 comboCount = 0;
@@ -173,7 +174,7 @@ public class LoadNote : MonoBehaviour
             else 
             {
                 Debug.Log("miss");
-                Destroy(noteList[nowClickNum], 1);
+                Destroy(noteList[nowClickNum], 0.1f);
                 noteList[nowClickNum].GetComponent<SpriteRenderer>().color = new Color(0.3f, 0.3f, 0.3f);
                 score -= 1;
                 comboCount = 0;

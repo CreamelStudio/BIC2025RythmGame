@@ -1284,6 +1284,7 @@ MonoBehaviour:
   comboText: {fileID: 8152838350139740545, guid: c3b232dee11a3c54db9663bb32c892b8, type: 3}
   canvas: {fileID: 438586992}
   jsonFileName: Chronomia
+  Sync: -0.19
 --- !u!4 &1309833936
 Transform:
   m_ObjectHideFlags: 0

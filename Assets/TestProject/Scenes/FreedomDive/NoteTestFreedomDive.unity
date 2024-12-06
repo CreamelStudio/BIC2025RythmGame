@@ -1268,7 +1268,7 @@ MonoBehaviour:
   disDetectCircle: {fileID: 881929353}
   video: {fileID: 671172662}
   vp: {fileID: 893076008}
-  turnSpeed: 60
+  turnSpeed: 90
   outline: {fileID: 1011743915}
   timerUI: {fileID: 482809654}
   musicName: {fileID: 217155314}
@@ -1284,6 +1284,7 @@ MonoBehaviour:
   comboText: {fileID: 8152838350139740545, guid: c3b232dee11a3c54db9663bb32c892b8, type: 3}
   canvas: {fileID: 438586992}
   jsonFileName: FreedomDive
+  Sync: -0.02
 --- !u!4 &1309833936
 Transform:
   m_ObjectHideFlags: 0
