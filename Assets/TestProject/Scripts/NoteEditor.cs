@@ -44,6 +44,9 @@ public class NoteEditor : MonoBehaviour
     private bool isStart;
     private bool isPlay;
 
+    [SerializeField]
+    private string jsonFileName;
+
 
     private void Start()
     {
@@ -62,7 +65,7 @@ public class NoteEditor : MonoBehaviour
         {
             if (isPlay && !vp.isPlaying)
             {
-                SaveData("Test");
+                SaveData(jsonFileName);
             }
 
             mainCircle.transform.Rotate(0, 0, turnSpeed * Time.deltaTime);

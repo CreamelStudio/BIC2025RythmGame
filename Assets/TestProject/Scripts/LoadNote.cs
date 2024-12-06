@@ -83,12 +83,14 @@ public class LoadNote : MonoBehaviour
     private GameObject comboText;
     [SerializeField]
     private GameObject canvas;
+    [SerializeField]
+    private string jsonFileName;
    
 
     private void Start()
     {
         comboCount = 0;
-        LoadJson("Test");
+        LoadJson(jsonFileName);
         musicName.text = $"{musicdata.musicName}";
         StartCoroutine(Co_StartDelay());
     }
@@ -202,6 +204,8 @@ public class LoadNote : MonoBehaviour
         yield return new WaitForSeconds(1);
         isPlay = true;
     }
+
+
 
     public void LoadJson(string fileName)
     {
